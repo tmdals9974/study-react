@@ -21,6 +21,8 @@ function onClick() {
 }
 ```
 
+---
+
 # create-react-app으로 시작하기2
 
 ## 환경
@@ -44,3 +46,53 @@ function onClick() {
 ## 코드 설명
 
 - 웹팩 설정으로 인해 빌드 시 `사이즈가 작은 이미지는 js 내장`되며, `사이즈가 큰 이미지는 원본 파일 빌드` (http 요청 횟수 감소, 로딩속도 증가)
+
+---
+
+# CSS 작성 방법 결정하기
+
+## 1. 일반적인 CSS 파일로 작성하기
+
+- css 파일을 하나의 html 파일에서 import하여 사용하는 방법
+- 클래스명이 충돌할 수 있음.
+
+## 2. css-module로 작성하기
+
+- `tempName.module.css` 형식으로 네이밍 된 css 파일을 js에서 객체 형식으로 import하여 사용하는 방법 (네이밍 규칙 반드시 지켜야함.)
+- 클래스 명을 속성 이름으로 입력하여 사용할 수 있다.
+- `classnames` 패키지를 이용하여 더 편리하게 사용할 수 있다.
+
+```javascript
+import TestStyle from "./test.module.css";
+export default () => <button className={`${TestStyle.testGreen}`}>test</button>;
+```
+
+## 3. Sass로 작성하기
+
+- `node-sass` 패키지 설치 필요
+- css이지만 변수, 믹스인 등 처리 가능
+
+## 4. css-in-js로 작성하기
+
+- css 코드를 js 내에서 관리하는 방법. 동적으로 사용가능.
+- 마크업 개발팀이 별도로 있다면 도입을 추천하지 않음.
+- `styled-components` 패키지 설치 필요
+- `tagged template literals` 문법 사용
+
+```javascript
+import styled from "styled-components";
+
+const BoxCommon = styled.div`
+  width: ${(props) => (props.isBig ? 100 : 50)}px;
+  height: 30px;
+`;
+const yellowBox = styled(BoxCommon)`
+  background-color: yellow;
+`;
+
+export default function TestCSSinJS({ size }) {
+  const isBig = size === "big";
+  return <yellowBox isBig={isBig}>{isBig ? "큰 버튼" : "작은 버튼"}</yellowBox>;
+}
+
+```
