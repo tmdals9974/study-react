@@ -2,10 +2,17 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  function onClick() {
+    import('./data.json').then(({ default: data}) => {
+      console.log(data);
+    })
+  }
+  
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <button onClick={onClick}>dynamic import</button>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
