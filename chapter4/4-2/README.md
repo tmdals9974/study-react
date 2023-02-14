@@ -49,7 +49,7 @@ const Input = React.forwardRef(function (props, ref) {
 ```
 
 - `ref` 속성에 `useRef`의 반환 값이 아닌, 일반 함수를 넣어 사용 할 수 있음 (`3-function` 참고)
-- for문으로 여러개의 컴포넌트를 만들어야 하고, 그 컴포넌트들에 ref속성을 넣어야 할 때는 `useRef`를 사용하긴 어려움. 함수 사용 필요 (`4-function-multi` 참고F )
+- for문으로 여러개의 컴포넌트를 만들어야 하고, 그 컴포넌트들에 ref속성을 넣어야 할 때는 `useRef`를 사용하긴 어려움. 함수 사용 필요 (`4-function-multi` 참고)
 - 조건부 렌더링 등의 경우 **컴포넌트가 생성된 이후에도 ref.current에 값이 없을 수도 있으니 주의** (`5-conditional` 참고)
 
 ## 실행 방법

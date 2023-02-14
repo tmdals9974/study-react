@@ -9,3 +9,8 @@
 
 ## 📌 프로젝트 개발 환경
   ![Generic badge](https://img.shields.io/badge/nodejs-v14.15.5-blue.svg) ![Generic badge](https://img.shields.io/badge/npm-v6.14.11-blue.svg)
+
+## 📝정리 자료
+
+- [핵심 내용 정리](docs/Note.md)
+- [리액트 훅 정리](docs/Hook.md)
