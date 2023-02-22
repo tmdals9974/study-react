@@ -22,7 +22,81 @@ npm start
 - 로그인 시 비밀번호 필요 없음 (아무거나 입력)
 
 ## 강의 내용 메모
+
 - ### Props Type 체크 방식 (추천: 1>2>3)
   1. typescript
-  2. jsdoc: 컴파일타임에 타입체크 
+  2. jsdoc: 컴파일타임에 타입체크
   3. prop-types: 런타임에 타입체크
+- ### redux
+
+  - `createReducer`란?
+    - **before**
+      ```javascript
+      function reducer(state = INITIAL_STATE, action) {
+        return produce(state, (draft) => {
+          switch (action.type) {
+            case SAY_HELLO:
+              draft.msg = `안녕하세요 ${action.name}님`;
+              break;
+          }
+        });
+      }
+      ```
+    - **after**
+      ```javascript
+      function createReducer(initialState, handlerMap) {
+        return function (state = initialState, action) {
+          return produce(state, (draft) => {
+            const handler = handlerMap[action.type];
+            if (handler) {
+              handler(draft, action);
+            }
+          });
+        };
+      }
+      const reducer = createReducer(INITIAL_STATE, {
+        [SAY_HELLO]: (state, action) => (state.msg = `안녕하세요 ${action.name}님`),
+      });
+      ```
+  - `reducer`, `dispatch`
+
+    1. `redux`를 이용할 때는, 어떤 동작을 할 것인지를 구분하기 위해 `type`을 정의한다.
+
+    ```javascript
+    const ADD_TODO = "todo/ADD";
+    ```
+
+    2. `reducer`는 `type`에 따라 어떤 동작을 할 것인지를 정의한다.
+
+    ```javascript
+    function reducer(state = INITIAL_STATE, action) {
+      switch (action.type) {
+        case ADD_TODO:
+          state.todos.push(action.title);
+          return {
+            todos: [...state.todos],
+          };
+        // ...
+      }
+    }
+    ```
+
+    3. `reducer`를 동작시키기 위해 `dispatch` 함수를 사용한다. (액션을 발생시킴)
+
+    ```javascript
+    store.dispatch({ type: ADD_TODO, title: "영화 보기", priority: "high" });
+    ```
+
+    4. `dispatch`에 매개변수로 넘겨줄 객체의 인터페이스를 재사용하기 위해 별도로 정의한다.
+
+    ```javascript
+    function addTodo({ title, priority }) {
+      return { type: ADD_TODO, title, priority };
+    }
+    ```
+
+    5. `3번` 소스를 `4번`을 이용하여 리팩토링한다.
+
+    ```javascript
+    store.dispatch(addTodo({ title: "영화 보기", priority: "high" }));
+    ```
