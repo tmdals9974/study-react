@@ -100,3 +100,7 @@ npm start
     ```javascript
     store.dispatch(addTodo({ title: "영화 보기", priority: "high" }));
     ```
+
+  - `redux-saga`
+    - 추후 공식문서 보면서 공부가 더 필요할듯. 사가 미들웨어와 사가 함수가 generator여서 협력을 한다는것도 두루뭉실하게 이해됨.
+    - `makeFetchSaga & fetchInfo`를 굳이 써야하나? redux-toolkit이나.. 그런 다른 라이브러리로 제공되는 기능이 없나? 찾아보자.
