@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { PageHeader, Col, Row, Descriptions, Typography, Space, Spin } from "antd";
+import { PageHeader, Col, Row, Descriptions, Typography } from "antd";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { actions, Types } from "../state";
