@@ -4,6 +4,9 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { actions, Types } from "../state";
 import useFetchInfo from "../../common/hook/useFetchInfo";
+import History from "../../common/component/History";
+import Department from "./Department";
+import TagList from "./TagList";
 /**
  *
  * @param {object} param
@@ -38,9 +41,9 @@ export default function User({ match }) {
               <Descriptions.Item label="이름">
                 <Typography.Text>{user.name}</Typography.Text>
               </Descriptions.Item>
-              <Descriptions.Item label="소속">{user.department}</Descriptions.Item>
-              <Descriptions.Item label="태그">{user.tag}</Descriptions.Item>
-              <Descriptions.Item label="수정 내역">수정 내역</Descriptions.Item>
+              <Descriptions.Item label="소속"><Department /></Descriptions.Item>
+              <Descriptions.Item label="태그"><TagList /></Descriptions.Item>
+              <Descriptions.Item label="수정 내역"><History /></Descriptions.Item>
             </Descriptions>
           )}
           {!user && isFetched && <Typography.Text>존재하지 않는 사용자입니다.</Typography.Text>}

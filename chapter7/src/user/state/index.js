@@ -1,9 +1,10 @@
-import { createReducer, createSetValueAction, setValueReducer } from "../../common/redux-helper";
+import { createReducer, createSetValueAction, FETCH_KEY, setValueReducer } from "../../common/redux-helper";
 
 //#region Types
 export const Types = {
   SetValue: "search/SetValue",
   FetchUser: "user/FetchUser",
+  FetchUpdateUser: "user/FetchUpdateUser",
 };
 //#endregion
 
@@ -11,6 +12,13 @@ export const Types = {
 export const actions = {
   setValue: createSetValueAction(Types.SetValue),
   fetchUser: (name) => ({ type: Types.FetchUser, name }),
+  fetchUpdateUser: ({ user, key, value, fetchKey }) => ({
+    type: Types.FetchUpdateUser,
+    user,
+    key,
+    value,
+    [FETCH_KEY]: fetchKey,
+  }),
 };
 //#endregion
 
