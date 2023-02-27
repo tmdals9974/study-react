@@ -4,6 +4,7 @@ import { createReducer, createSetValueAction, setValueReducer } from "../../comm
 export const Types = {
   SetValue: "search/SetValue",
   FetchAutoComplete: "search/FetchAutoComplete",
+  FetchAllHistory: "search/FetchAllHistory",
 };
 //#endregion
 
@@ -14,6 +15,7 @@ export const actions = {
     type: Types.FetchAutoComplete,
     keyword,
   }),
+  fetchAllHistory: () => ({ type: Types.FetchAllHistory }),
 };
 //#endregion
 
@@ -21,6 +23,7 @@ export const actions = {
 const INITIAL_STATE = {
   keyword: "",
   autoCompletes: [],
+  history: [],
 };
 
 const reducer = createReducer(INITIAL_STATE, {
