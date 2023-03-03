@@ -3,6 +3,8 @@ import Search from "./search/container/Search";
 import "antd/dist/antd.css";
 import { Route } from "react-router-dom";
 import User from "./user/container/User";
+import Login from "./auth/container/Login";
+import Signup from "./auth/container/Singup";
 
 export default function App() {
   useEffect(() => {
@@ -15,6 +17,8 @@ export default function App() {
     <>
       <Route exact path="/" component={Search}></Route>
       <Route path="/user/:name" component={User}></Route>
+      <Route path="/login" component={Login}></Route>
+      <Route path="/signup" component={Signup}></Route>
     </>
   );
 }
