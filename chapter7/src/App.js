@@ -4,7 +4,9 @@ import "antd/dist/antd.css";
 import { Route } from "react-router-dom";
 import User from "./user/container/User";
 import Login from "./auth/container/Login";
-import Signup from "./auth/container/Singup";
+import Signup from "./auth/container/Signup";
+import { useDispatch } from "react-redux";
+import { actions as authActions } from "./auth/state";
 
 export default function App() {
   useEffect(() => {
@@ -12,6 +14,11 @@ export default function App() {
     const loadingEl = document.getElementById("init-loading");
     bodyEl.removeChild(loadingEl);
   }, []);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(authActions.fetchUser());
+  }, [dispatch]);
 
   return (
     <>
