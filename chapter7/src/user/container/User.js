@@ -27,12 +27,19 @@ export default function User({ match }) {
     dispatch(actions.fetchUserHistory(name));
   }, [dispatch, name]);
 
+  useEffect(() => {
+    return () => dispatch(actions.initialize()); //유저페이지를 벗어날 때 모든 상태값 초기화
+  }, [dispatch]);
+
   const { isFetched } = useFetchInfo(Types.FetchUser);
 
   return (
     <Row justify="center">
       <Col xs={24} md={20} lg={14}>
-        <PageHeader onBack={history.goBack} title={<FetchLabel label="사용자 정보" actionType={Types.FetchUser} />}>
+        <PageHeader
+          onBack={() => history.push("/")}
+          title={<FetchLabel label="사용자 정보" actionType={Types.FetchUser} />}
+        >
           {user && (
             <Descriptions layout="vertical" bordered column={1}>
               <Descriptions.Item label="이름">
